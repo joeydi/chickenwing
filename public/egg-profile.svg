@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="308px" height="853px" viewBox="0 0 308 853" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Frame" transform="translate(0.3008, -0.0089)" stroke="#979797">
+            <path d="M-1.13686838e-13,0 C253.449219,0 307.309712,213.25 307.309712,426.5 C307.309712,639.75 153.654856,853 -1.13686838e-13,853" id="Path" transform="translate(153.6549, 426.5) scale(1, -1) translate(-153.6549, -426.5)"></path>
+        </g>
+    </g>
+</svg>
