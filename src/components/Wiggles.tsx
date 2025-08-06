@@ -1,23 +1,20 @@
-import { Suspense, useMemo } from 'react';
-import { useLoader, Canvas } from '@react-three/fiber';
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
-import { Decal, OrbitControls, useGLTF, useTexture } from '@react-three/drei';
-import * as THREE from 'three';
+import { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Decal, OrbitControls, useTexture } from '@react-three/drei';
 import { PlayerBody } from './PlayerBody';
 
-function Test() {
+function WigglesDecal() {
+  const decalTexture = useTexture('/textures/wiggles.png');
+
   return (
-    <mesh position={[-0.125, 0, 0]}>
-      <sphereGeometry args={[0.5, 16, 16]} />
-      <meshStandardMaterial color="#ffffff" />
-      <Decal
-        position={[0, 0, 0.5]} // [x, y, z] on front of egg
-        rotation={[0, 0, 0]} // flat-on front
-        scale={1}
-        map={useTexture('/textures/wiggles.png')}
-        depthTest={false}
-      />
-    </mesh>
+    <Decal
+      debug
+      position={[0, 1, 3]} // Slightly offset from surface
+      rotation={[0, 0, 0]}
+      scale={5}
+    >
+      <meshBasicMaterial map={decalTexture} transparent alphaTest={0.1} polygonOffset polygonOffsetFactor={-1} />
+    </Decal>
   );
 }
 
@@ -28,15 +25,9 @@ export function Wiggles() {
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 10, 5]} intensity={1} />
 
-        {/* <Sunglasses scale={0.35} position={[-1.2, 3, 1.25]} rotation={[Math.PI / -2, 0, 0]} /> */}
-        {/* <Decal
-          position={[0, 0.1, 0.45]} // [x, y, z] on front of egg
-          rotation={[0, 0, 0]} // flat-on front
-          scale={0.3}
-          map={useTexture('/textures/wiggles.png')}
-          flatShading
-        /> */}
-        <PlayerBody>{/* <Test /> */}</PlayerBody>
+        <PlayerBody>
+          <WigglesDecal />
+        </PlayerBody>
 
         <OrbitControls target={[0, 2, 0]} />
       </Suspense>

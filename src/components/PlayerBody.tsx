@@ -1,16 +1,16 @@
-import { Suspense, useMemo, type ReactNode } from 'react';
-import { useLoader, Canvas } from '@react-three/fiber';
+import { useMemo, type ReactNode } from 'react';
+import { useLoader } from '@react-three/fiber';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
-import { Decal, OrbitControls, useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface EggFromSVGProps {
-  url: string;
   position?: [number, number, number];
   scale?: number;
+  children: ReactNode;
 }
 
-export function EggFromSVG({ url, position = [0, 0, 0], scale = 0.01 }: EggFromSVGProps) {
+export function EggFromSVG({ position = [0, 0, 0], scale = 0.01, children }: EggFromSVGProps) {
+  const url = '/egg-profile.svg';
   const svgData = useLoader(SVGLoader, url);
 
   const geometry = useMemo(() => {
@@ -18,7 +18,7 @@ export function EggFromSVG({ url, position = [0, 0, 0], scale = 0.01 }: EggFromS
     const path = svgData.paths[0];
     const shapePoints = path.subPaths[0].getSpacedPoints(100);
 
-    const points: THREE.Vector2[] = shapePoints.map(p => new THREE.Vector2(p.x * scale, p.y * scale));
+    const points: THREE.Vector2[] = shapePoints.map(p => new THREE.Vector2(p.x * scale, p.y * scale)).reverse();
 
     // 2️⃣ Generate LatheGeometry
     const geo = new THREE.LatheGeometry(points, 64);
@@ -34,19 +34,11 @@ export function EggFromSVG({ url, position = [0, 0, 0], scale = 0.01 }: EggFromS
     return geo;
   }, [svgData, scale]);
 
-  const decalTexture = useTexture('/textures/wiggles.png');
-
   return (
     <mesh position={position} scale={0.375}>
       <primitive object={geometry} attach="geometry" />
-      <meshStandardMaterial color="#FFAF00" side={THREE.DoubleSide} />
-      <Decal
-        position={[0, -1, 0.5]} // [x, y, z] on front of egg
-        rotation={[0, 0, 0]} // flat-on front
-        scale={1}
-        map={decalTexture}
-        // depthTest={false}
-      />
+      {children}
+      <meshStandardMaterial color="#FFAF00" />
     </mesh>
   );
 }
@@ -75,7 +67,7 @@ function Cylinder({
 export function PlayerBody({ children }: { children: ReactNode }) {
   return (
     <>
-      <EggFromSVG url="/egg-profile.svg" position={[0, 3, 0]} />
+      <EggFromSVG position={[0, 3, 0]}>{children}</EggFromSVG>
       <Cylinder height={2} position={[0, 1, 0]} />
 
       <mesh position={[-0.125, 0, 0]}>
@@ -86,8 +78,6 @@ export function PlayerBody({ children }: { children: ReactNode }) {
         <sphereGeometry args={[0.5, 16, 16]} />
         <meshStandardMaterial color="#ffffff" />
       </mesh>
-
-      {children}
     </>
   );
 }

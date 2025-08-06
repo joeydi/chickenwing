@@ -1,8 +1,6 @@
-import { Suspense, useMemo } from 'react';
-import { useLoader, Canvas } from '@react-three/fiber';
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
+import { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
-import * as THREE from 'three';
 import { PlayerBody } from './PlayerBody';
 
 function Sunglasses({
@@ -26,7 +24,7 @@ export function Jeff() {
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 10, 5]} intensity={1} />
 
-        <Sunglasses scale={0.35} position={[-1.2, 3, 1.25]} rotation={[Math.PI / -2, 0, 0]} />
+        <Sunglasses scale={0.35} position={[-1.2, 2.875, 1.25]} rotation={[Math.PI / -2, 0, 0]} />
         <PlayerBody />
 
         <OrbitControls target={[0, 2, 0]} />
