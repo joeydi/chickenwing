@@ -8,7 +8,6 @@ function WigglesDecal() {
 
   return (
     <Decal
-      debug
       position={[0, 1, 3]} // Slightly offset from surface
       rotation={[0, 0, 0]}
       scale={5}

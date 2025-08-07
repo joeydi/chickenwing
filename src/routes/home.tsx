@@ -2,11 +2,13 @@ import type { ReactNode } from 'react';
 import { Jeff } from '../components/Jeff';
 import { Wiggles } from '../components/Wiggles';
 
-function PlayerSelect({ number, children }: { number: number; children: ReactNode }) {
+function PlayerSelect({ number, background, children }: { number: number; background: string; children: ReactNode }) {
   return (
     <div className="w-[25%] flex flex-col gap-8">
-      <div className="border aspect-2/3">{children}</div>
-      <p className="p-4 border text-2xl text-center">Player {number}</p>
+      <div className="border aspect-2/3 rounded-lg" style={{ backgroundColor: background }}>
+        {children}
+      </div>
+      <p className="p-4 border rounded-lg text-2xl text-center bg-white/10">Player {number}</p>
     </div>
   );
 }
@@ -18,10 +20,10 @@ export function Home() {
       <p className="text-2xl">To get started choose your players.</p>
 
       <div className="flex gap-12 w-full">
-        <PlayerSelect number={1}>
+        <PlayerSelect number={1} background="#FF6242">
           <Jeff />
         </PlayerSelect>
-        <PlayerSelect number={2}>
+        <PlayerSelect number={2} background="#00B8F0">
           <Wiggles />
         </PlayerSelect>
         <PlayerSelect number={3} />
