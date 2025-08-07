@@ -27,7 +27,7 @@ export function Jeff() {
         <Sunglasses scale={0.35} position={[-1.2, 2.875, 1.25]} rotation={[Math.PI / -2, 0, 0]} />
         <PlayerBody />
 
-        <OrbitControls target={[0, 2, 0]} />
+        <OrbitControls target={[0, 2.5, 0]} />
       </Suspense>
     </Canvas>
   );

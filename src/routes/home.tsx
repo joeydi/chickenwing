@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import { Jeff } from '../components/Jeff';
 import { Wiggles } from '../components/Wiggles';
+import { Wendy } from '../components/Wendy';
+import { George } from '../components/George';
 
 function PlayerSelect({ number, background, children }: { number: number; background: string; children: ReactNode }) {
   return (
@@ -15,7 +17,7 @@ function PlayerSelect({ number, background, children }: { number: number; backgr
 
 export function Home() {
   return (
-    <div className="p-12 w-screen h-screen flex flex-col items-center gap-12 bg-gray-900 text-white">
+    <div className="p-24 w-screen h-screen flex flex-col items-center gap-12 bg-gray-900 text-white">
       <h1 className="font-display text-[100px] text-center text-amber-300">The Last Chicken Wing</h1>
       <p className="text-2xl">To get started choose your players.</p>
 
@@ -26,8 +28,12 @@ export function Home() {
         <PlayerSelect number={2} background="#00B8F0">
           <Wiggles />
         </PlayerSelect>
-        <PlayerSelect number={3} />
-        <PlayerSelect number={4} />
+        <PlayerSelect number={3} background="#ffd230">
+          <Wendy />
+        </PlayerSelect>
+        <PlayerSelect number={4} background="#52E074">
+          <George />
+        </PlayerSelect>
       </div>
     </div>
   );

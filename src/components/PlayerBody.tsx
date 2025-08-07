@@ -64,7 +64,7 @@ function Cylinder({
   );
 }
 
-export function PlayerBody({ children }: { children: ReactNode }) {
+export function PlayerBody({ children }: { children?: ReactNode }) {
   return (
     <>
       <EggFromSVG position={[0, 3, 0]}>{children}</EggFromSVG>

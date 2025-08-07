@@ -28,7 +28,19 @@ export function Wiggles() {
           <WigglesDecal />
         </PlayerBody>
 
-        <OrbitControls target={[0, 2, 0]} />
+        <group rotation={[0, 0, -0.25]} position={[-0.875, 0.1, 0]}>
+          <mesh position={[0, 5, 0]} scale={0.5}>
+            <coneGeometry args={[1, 2, 32]} />
+            <meshStandardMaterial color="#FF6242" />
+          </mesh>
+
+          <mesh position={[0, 5.5, 0]}>
+            <sphereGeometry args={[0.125, 16, 16]} />
+            <meshStandardMaterial color="#ffd230" />
+          </mesh>
+        </group>
+
+        <OrbitControls target={[0, 2.5, 0]} />
       </Suspense>
     </Canvas>
   );
