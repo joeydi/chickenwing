@@ -36,7 +36,7 @@ export function PlayerSelect({ number, background, children }: { number: number;
 
   useEffect(() => {
     const id = setInterval(() => {
-      setRotation([getRandom(-0.25, 0.25), getRandom(-0.75, 0.75), 0]);
+      setRotation([getRandom(-0.125, 0.125), getRandom(-0.75, 0.75), 0]);
     }, getRandom(3000, 5000));
 
     return () => clearInterval(id);
