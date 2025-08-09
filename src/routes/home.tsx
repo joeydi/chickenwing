@@ -1,19 +1,8 @@
-import type { ReactNode } from 'react';
 import { Jeff } from '../components/Jeff';
 import { Wiggles } from '../components/Wiggles';
 import { Wendy } from '../components/Wendy';
 import { George } from '../components/George';
-
-function PlayerSelect({ number, background, children }: { number: number; background: string; children: ReactNode }) {
-  return (
-    <div className="w-[25%] flex flex-col gap-8">
-      <div className="border aspect-2/3 rounded-lg" style={{ backgroundColor: background }}>
-        {children}
-      </div>
-      <p className="p-4 border rounded-lg text-2xl text-center bg-white/10">Player {number}</p>
-    </div>
-  );
-}
+import { PlayerSelect } from '../components/PlayerSelect';
 
 export function Home() {
   return (
