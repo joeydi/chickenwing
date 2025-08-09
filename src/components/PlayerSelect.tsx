@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Canvas, useThree } from '@react-three/fiber';
+// import { OrbitControls } from '@react-three/drei';
 import { a, useSpring } from '@react-spring/three';
 
 type Vec3 = [number, number, number];
@@ -22,6 +22,17 @@ function getRandom(min: number, max: number) {
  */
 function mapRange(value: number, inMin: number, inMax: number, outMin: number, outMax: number): number {
   return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+}
+
+function CameraLookAt() {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    camera.lookAt(0, 2.5, 0);
+    camera.updateProjectionMatrix();
+  }, [camera]);
+
+  return null;
 }
 
 export function PlayerSelect({ number, background, children }: { number: number; background: string; children: ReactNode }) {
@@ -57,12 +68,13 @@ export function PlayerSelect({ number, background, children }: { number: number;
           <Suspense fallback={null}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 10, 5]} intensity={1} />
+            <CameraLookAt />
 
             <a.group rotation-x={rx} rotation-y={ry} rotation-z={rz}>
               {children}
             </a.group>
 
-            <OrbitControls target={[0, 2.5, 0]} />
+            {/* <OrbitControls target={[0, 2.5, 0]} /> */}
           </Suspense>
         </Canvas>
       </div>
